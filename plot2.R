@@ -11,6 +11,8 @@ if(!file.exists("household_power_consumption.txt")) {
 consumption <- read.table("household_power_consumption.txt", header=TRUE, sep=";", stringsAsFactors=FALSE, dec=".")
 consumptionSubSet <- consumption[consumption$Date %in% c("1/2/2007","2/2/2007") ,]
 
-png("plot1.png", width = 480, height = 480)
-hist(as.numeric(consumptionSubSet$Global_active_power), col="red", main="Global Active Power", xlab="Global Active Power (kilowatts)")
+png("plot2.png", width = 480, height = 480)
+plot(strptime(paste(subSetData$Date, subSetData$Time, sep=" "), "%d/%m/%Y %H:%M:%S"),
+     as.numeric(consumptionSubSet$Global_active_power),
+     type="l", xlab="", ylab="Global Active Power (kilowatts)")
 dev.off()
